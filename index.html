@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="./css/style.css">
 
     <title>MI Etch a Sketch</title>
@@ -23,19 +24,32 @@
         <div class="controls">
             <div class="grid-properties">
                 <div class="grid-borders">
-                    <label for="grid-borders-toggle">Show Borders</label>
+                    <label for="grid-borders-toggle">Borders</label>
                     <input type="checkbox" id="grid-borders-toggle" checked />
                 </div>
                 <div class="grid-control">
                     <label for="grid-size">
-                        Grid Size:
-                        <span id="grid-size-value"></span>
+                        <span id="grid-size-value">
+                            10x10
+                        </span>
                     </label>
-                    <input id="grid-size" type="range" min="10" max="80" value="2">
+                    <input id="grid-size" type="range" min="10" max="80" value="10" step="2">
                 </div>
 
             </div>
-            <p>AQUIV AN MUCHAS COSAS</p>
+            <div class="colors">
+                <input type="color" id="color-picker" value="#000000"></input>
+            </div>
+            <div class="buttons">
+                <div class="special-modes">
+                    <button id="darkening-mode" class="neon-border"><i class="fa-solid fa-moon"></i></button>
+                    <button id="rainbow-mode" class="neon-border"><i class="fa-solid fa-rainbow"></i></button>
+                </div>
+                <button id="eraser"><i class="fa-solid fa-eraser"></i></button>
+                <button id="clear"><i class="fa-solid fa-trash"></i></button>
+            </div>
+
+            </div>
         </div>
     </main>
 
