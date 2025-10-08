@@ -1,95 +1,117 @@
-*{
-font-family: ui-sans-serif,system-ui,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+* {
+    font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+*,
+::after,
+::before {
+    box-sizing: border-box;
 }
 
 :root {
-    /* Colores principales del gradiente */
-    --deep-purple: #667eea;
-    --violet: #764ba2;
-    --dark-blue: #4a6ee0;
-    --medium-purple: #6a5ee0;
-    
-    /* Colores para fondos y acentos */
-    --light-purple: #a78bfa;
-    --soft-lavender: #c4b5fd;
-    --very-light-purple: #d6d1ec;
+    --munsell-red: #F2003C;
+}
+
+header,
+.controls,
+.draw-container {
+    background-color: var(--munsell-red);
+
+}
+
+.title {
+    margin: 0;
 }
 
 body {
-    margin: 0;
+    padding: 10px;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    /* align-items: center; */
-    background-image: linear-gradient(45deg, rgba(254, 246, 210, 0.53) 0%, rgba(254, 246, 210, 0.53) 14.286%, rgba(221, 240, 216, 0.53) 14.286%, rgba(221, 240, 216, 0.53) 28.572%, rgba(188, 233, 223, 0.53) 28.572%, rgba(188, 233, 223, 0.53) 42.858%, rgba(156, 227, 229, 0.53) 42.858%, rgba(156, 227, 229, 0.53) 57.144%, rgba(123, 220, 235, 0.53) 57.144%, rgba(123, 220, 235, 0.53) 71.42999999999999%, rgba(90, 214, 242, 0.53) 71.43%, rgba(90, 214, 242, 0.53) 85.71600000000001%, rgba(57, 207, 248, 0.53) 85.716%, rgba(57, 207, 248, 0.53) 100.002%), linear-gradient(135deg, rgb(246, 99, 200) 0%, rgb(246, 99, 200) 12.5%, rgb(223, 98, 196) 12.5%, rgb(223, 98, 196) 25%, rgb(199, 97, 192) 25%, rgb(199, 97, 192) 37.5%, rgb(176, 96, 188) 37.5%, rgb(176, 96, 188) 50%, rgb(152, 95, 184) 50%, rgb(152, 95, 184) 62.5%, rgb(129, 94, 180) 62.5%, rgb(129, 94, 180) 75%, rgb(105, 93, 176) 75%, rgb(105, 93, 176) 87.5%, rgb(82, 92, 172) 87.5%, rgb(82, 92, 172) 100%);
-
-}
-
-header{
-    text-align: center;
-}
-
-main{
-    display:flex;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: center;
-    gap: 20px;
-    flex:1;
-
+    background-image: repeating-radial-gradient(circle at center center, transparent 0px, transparent 2px, rgba(0, 0, 0, 0.03) 2px, rgba(0, 0, 0, 0.03) 3px, transparent 3px, transparent 5px, rgba(0, 0, 0, 0.03) 5px, rgba(0, 0, 0, 0.03) 7px), repeating-radial-gradient(circle at center center, rgb(255, 255, 255) 0px, rgb(255, 255, 255) 9px, rgb(255, 255, 255) 9px, rgb(255, 255, 255) 21px, rgb(255, 255, 255) 21px, rgb(255, 255, 255) 31px, rgb(255, 255, 255) 31px, rgb(255, 255, 255) 40px);
+    background-size: 20px 20px;
 }
 
-.control-section {
-    background: linear-gradient(135deg, var(--deep-purple), var(--violet));
-    color: white;
+header {
+    text-align: center;
+    border-radius: 20px 20px 0 0;
     padding: 1rem;
-    min-width:200px;
-    border-radius: 12px;
-    
+    color: white;
+    width: 100%;
+    max-width: 800px;
+
+
 }
 
-.draw-section{
+main {
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+    max-width: 800px;
+    max-height: 800px;
+
+}
+
+.draw-container {
     display: flex;
     justify-content: center;
-    background-color: var(--very-light-purple);
-    border-radius: 12px;
-    flex:1;
-    max-width: 1000px; 
-}
-
-#sketch{
-margin: 50px;
-box-sizing: content-box;
-width: 800px;
-height: 800px;
-background-color: #fefefe;
-box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-display: flex;
-flex-wrap: wrap;
+    padding: 0 60px;
 
 }
 
-.grid{
-    border: 1px solid;
+#sketch {
+    background-color: #fefefe;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    display: flex;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+    flex: 1;
+    aspect-ratio: 1 / 1;
+
+}
+
+.grid-item {
     box-sizing: border-box;
     padding: 0;
     margin: 0;
-
 }
 
+.grid-item-border{
+    border: 1px solid #ddd;
+
+}
+.controls {
+    display: flex;
+    justify-content: space-between;
+
+    padding: 10px;
+    width: 100%;
+    border-radius: 0 0 20px 20px;
+}
+
+.grid-properties{
+    display: flex;
+    align-items: center;
+    gap:5px;
+}
+
+.grid-control, .grid-borders{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+
+
+
+/*
 footer {
     background: linear-gradient(135deg, var(--violet), var(--dark-blue));
     color: white;
     padding: 1rem;
     text-align: center;
-}
-
-/* Glassmorphism effect */
-.glass-effect {
-    background: rgba(245, 7, 7, 0.1);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    transition: background 0.3s ease, border 0.3s ease;
-}
-
-
+} */

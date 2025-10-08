@@ -6,31 +6,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/style.css">
 
-    <title>Etch a Sketch</title>
+    <title>MI Etch a Sketch</title>
 </head>
 
 <body>
     <header>
-        <h1>Etch-A-Sketch</h1>
+        <h1 class="title">Etch-A-Sketch</h1>
     </header>
 
     <main>
-        <div class="control-section">
-            <ul class="options">
-                <li><a>Item 1</a></li>
-                <li><a>Item 2</a></li>
-                <li><a>Item 3</a></li>
-                <li><a>Item 4</a></li>
-
-            </ul>
-        </div>
-        <div class="draw-section glass-effect">
+        <div class="draw-container">
             <div id="sketch">
+            </div>
+        </div>
+
+        <div class="controls">
+            <div class="grid-properties">
+                <div class="grid-borders">
+                    <label for="grid-borders-toggle">Show Borders</label>
+                    <input type="checkbox" id="grid-borders-toggle" checked />
+                </div>
+                <div class="grid-control">
+                    <label for="grid-size">
+                        Grid Size:
+                        <span id="grid-size-value"></span>
+                    </label>
+                    <input id="grid-size" type="range" min="10" max="80" value="2">
+                </div>
 
             </div>
-
+            <p>AQUIV AN MUCHAS COSAS</p>
         </div>
-
     </main>
 
     <footer>
