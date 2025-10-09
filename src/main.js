@@ -7,10 +7,12 @@ document.addEventListener('DOMContentLoaded', () => {
         gridSizeDisplay: document.getElementById('grid-size-value'),
         colorPicker: document.getElementById('color-picker'),
         clearBtn: document.getElementById('clear'),
-        rainbowBtn: document.getElementById('rainbow-mode'),
         eraserBtn: document.getElementById('eraser'),
+        eyeDropper: document.getElementById('eye-dropper'),
+        eyeDropperOn: false,
+        rainbowBtn: document.getElementById('rainbow-mode'),
         darkBtn: document.getElementById('darkening-mode'),
-
+        clickOn: false,
         rainbowColors: [
             '#FF355E', // Rojo vibrante
             '#FF6037', // Naranja coral
@@ -28,52 +30,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
         black: '#000000',
         white: '#ffffff',
-
-
-
     }
 
     dom.rainbowBtn.classList.remove('active');
     dom.colorPicker.value = dom.black;
     createGrid(dom, dom.gridSize.value);
     createListeners(dom);
-
 });
 
 
 function createGrid(dom, grid) {
-
     dom.sketch.innerHTML = '';
     dom.gridSizeDisplay.textContent = `${grid}x${grid}`;
 
-    const sketchSize = 600;
     const totalCells = grid * grid;
-
     const cellPercentage = (100 / grid).toFixed(6);
-
     const fragment = document.createDocumentFragment();
 
     const getRandomRainbowColor = () => {
         return dom.rainbowColors[Math.floor(Math.random() * dom.rainbowColors.length)]
-    }
-
-    const colorToRgba = (color, opacity) => {
-        if (color.charAt(0) === "#") {
-            const r = parseInt(color.slice(1, 3), 16);
-            const g = parseInt(color.slice(3, 5), 16);
-            const b = parseInt(color.slice(5), 16);
-
-            return `rgba(${r},${g},${b},${opacity})`;
-        } else if (color.startsWith("rgb(")) {
-            const rgb = color.slice(4, -1).replaceAll(" ", "").split(",");
-            return `rgba(${rgb[0]},${rgb[1]},${rgb[2]},${opacity})`;
-        }
-
-    }
+    };
 
     const darkenColour = (color, count) => {
         if (!color) color = dom.white;
-        if (count===15) return dom.black;
+        if (count === 15) return dom.black;
 
         let r, g, b;
 
@@ -94,6 +74,7 @@ function createGrid(dom, grid) {
     }
 
     const changeColor = (e) => {
+        if (!dom.clickOn || dom.eyeDropperOn) return;
         if (dom.eraserBtn.classList.contains('active')) {
             e.target.style.backgroundColor = dom.white;
             return;
@@ -102,30 +83,84 @@ function createGrid(dom, grid) {
             dom.colorPicker.value = getRandomRainbowColor();
         } else if (dom.darkBtn.classList.contains('active')) {
             let count = parseInt(e.target.dataset.interactionCount) || 0;
-
             if (count < 15) {
                 count++;
                 e.target.dataset.interactionCount = count;
                 e.target.style.backgroundColor = darkenColour(e.target.style.backgroundColor, count);
             }
             return;
-
         }
 
         e.target.style.backgroundColor = dom.colorPicker.value;
     }
 
+
+    function addMultiEvent(element, events, handler) {
+        events.forEach(event => element.addEventListener(event, handler));
+    }
+
+    const handleTouchMove = (e) => {
+        if (dom.clickOn) {
+            e.preventDefault();
+
+            for (let i = 0; i < e.touches.length; i++) {
+                const touch = e.touches[i];
+
+                const element = document.elementFromPoint(touch.clientX, touch.clientY);
+
+                if (element && element.classList.contains('grid-item')) {
+                    const simulatedEvent = { target: element };
+                    changeColor(simulatedEvent);
+                }
+            }
+        }
+    };
+
+
+    addMultiEvent(dom.sketch, ['mousedown', 'touchstart'], (e) => {
+        if (e.target.classList.contains('grid-item')) {
+            e.preventDefault();
+            dom.clickOn = true;
+            changeColor(e);
+        }
+    });
+
+    dom.sketch.addEventListener('mouseover', (e) => {
+        if (!dom.eyeDropperOn && dom.clickOn && e.target.classList.contains('grid-item')) {
+            changeColor(e);
+        }
+    });
+
+    dom.sketch.addEventListener('touchmove', handleTouchMove);
+
+    addMultiEvent(dom.sketch, ['mouseup', 'touchend', 'touchcancel'], (e) => {
+        if (dom.clickOn && e.target.classList.contains('grid-item')) {
+            dom.clickOn = false;
+
+        }
+    });
+
+
+    dom.sketch.addEventListener('click', (e) => {
+        if (e.target.classList.contains('grid-item')) {
+            if (dom.eyeDropperOn) {
+                dom.colorPicker.value = e.target.style.backgroundColor || dom.white;
+                dom.eyeDropperOn = false;
+                dom.eyeDropper.classList.remove('active');
+                document.body.classList.remove('eye-dropper-mode');
+                return;
+            }
+            changeColor(e);
+        }
+    });
+
+
     for (let i = 0; i < totalCells; i++) {
         const gridItem = document.createElement('div');
         gridItem.classList.add('grid-item');
         if (dom.borders.checked) gridItem.classList.add('grid-item-border');
-
         gridItem.style.width = `${cellPercentage}%`;
         gridItem.style.height = `${cellPercentage}%`;
-        gridItem.addEventListener('click', changeColor);
-        gridItem.addEventListener('mousedown', () => {console.log('EYUEYEY')});
-
-
         fragment.appendChild(gridItem);
     }
 
@@ -162,33 +197,27 @@ function createListeners(dom) {
     }
 
     dom.eraserBtn.addEventListener('click', () => {
-        // dom.rainbowBtn.classList.remove('active');
         deactivateAllButtons(dom.eraserBtn.getAttribute('id'));
         dom.eraserBtn.classList.toggle('active');
-
     });
+
+    dom.eyeDropper.addEventListener('click', () => {
+        deactivateAllButtons(dom.eyeDropper.getAttribute('id'));
+        dom.eyeDropper.classList.add('active');
+        document.body.classList.add('eye-dropper-mode');
+        dom.eyeDropperOn = true;
+    })
 
     dom.colorPicker.addEventListener('click', () => {
         deactivateAllButtons('');
-        // dom.rainbowBtn.classList.remove('active');
-        // dom.eraserBtn.classList.remove('active');
-
     });
     dom.rainbowBtn.addEventListener('click', () => {
         deactivateAllButtons(dom.rainbowBtn.getAttribute('id'));
-        // dom.eraserBtn.classList.remove('active');
         dom.rainbowBtn.classList.toggle('active');
-
     });
 
     dom.darkBtn.addEventListener('click', () => {
         deactivateAllButtons(dom.darkBtn.getAttribute('id'));
         dom.darkBtn.classList.toggle('active');
-
-
     });
-
-
-
-
 }

@@ -10,6 +10,7 @@
 
 :root {
     --munsell-red: #F2003C;
+    --apricot: #FBCEB1;
 }
 
 header,
@@ -21,6 +22,10 @@ header,
 
 .title {
     margin: 0;
+    font-weight: 800;
+    font-size: 60px;
+    color: var(--apricot);
+    font-family: Pacifico;
 }
 
 body {
@@ -30,19 +35,17 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-image: repeating-radial-gradient(circle at center center, transparent 0px, transparent 2px, rgba(0, 0, 0, 0.03) 2px, rgba(0, 0, 0, 0.03) 3px, transparent 3px, transparent 5px, rgba(0, 0, 0, 0.03) 5px, rgba(0, 0, 0, 0.03) 7px), repeating-radial-gradient(circle at center center, rgb(255, 255, 255) 0px, rgb(255, 255, 255) 9px, rgb(255, 255, 255) 9px, rgb(255, 255, 255) 21px, rgb(255, 255, 255) 21px, rgb(255, 255, 255) 31px, rgb(255, 255, 255) 31px, rgb(255, 255, 255) 40px);
+    background-image: repeating-radial-gradient(circle at center center, transparent 0px, transparent 2px, rgba(143, 19, 19, 0.03) 2px, rgba(0, 0, 0, 0.03) 3px, transparent 3px, transparent 5px, rgba(0, 0, 0, 0.03) 5px, rgba(0, 0, 0, 0.03) 7px), repeating-radial-gradient(circle at center center, rgb(255, 255, 255) 0px, rgb(255, 255, 255) 9px, rgb(255, 255, 255) 9px, rgb(255, 255, 255) 21px, rgb(255, 255, 255) 21px, rgb(255, 255, 255) 31px, rgb(255, 255, 255) 31px, rgb(255, 255, 255) 40px);
     background-size: 20px 20px;
 }
 
 header {
     text-align: center;
     border-radius: 20px 20px 0 0;
-    padding: 1rem;
+    padding: 0.5rem;
     color: white;
     width: 100%;
     max-width: 800px;
-
-
 }
 
 main {
@@ -58,9 +61,11 @@ main {
 .draw-container {
     display: flex;
     justify-content: center;
-    padding: 0 60px;
+    padding: 0;
 
 }
+
+
 
 #sketch {
     background-color: #fefefe;
@@ -99,11 +104,14 @@ main {
     padding: 10px;
     width: 100%;
     border-radius: 0 0 20px 20px;
+    padding: 20px 100px;
+    flex: wrap;
+
 }
 
 .grid-properties {
     display: flex;
-    align-items: center;
+    align-items: start;
     gap: 5px;
     flex: 1;
 }
@@ -115,12 +123,15 @@ main {
     align-items: center;
 }
 
+.colors{
+    flex-shrink: 0
+}
 .colors,
 .special-modes {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap:10px;
+    gap: 10px;
 }
 
 .buttons {
@@ -129,25 +140,162 @@ main {
     align-items: center;
     gap: 10px;
     flex: 1;
+
 }
 
-
-.neon-border {
-    box-shadow: 0 0 15px rgba(66, 153, 225, 0.5);
-    transition: box-shadow 0.3s ease;
-}
-
-button{
-padding: 10px;
-}
-
-
-
-
-/*
-footer {
-    background: linear-gradient(135deg, var(--violet), var(--dark-blue));
+button.active {
+    box-shadow:
+        rgba(50, 50, 93, 0.35) 0px 20px 40px -12px inset,
+        rgba(0, 0, 0, 0.4) 0px 12px 24px -12px inset;
+    background: linear-gradient(145deg, #5a6fd8, #4a6ee0);
     color: white;
-    padding: 1rem;
-    text-align: center;
-} */
+    border: 2px solid #3a5ed0;
+    transform: translateY(2px);
+}
+
+
+button {
+    padding: 10px 12px;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
+        rgba(0, 0, 0, 0.3) 0px 7px 13px -3px,
+        rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+    border: none;
+    border-radius: 8px;
+    background: white;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    min-width: 24px;
+    /* 🔥 Tamaño mínimo táctil */
+    min-height: 24px;
+
+}
+
+button:hover:not(.active) {
+    background-color: #f1f3f4;
+    transform: translateY(-1px);
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px;
+}
+
+label {
+    font-family: Pacifico;
+    color: var(--apricot);
+    font-weight: 700;
+}
+
+
+@media (max-width: 768px) {
+    .controls {
+        flex-direction: column;
+        /* 🔥 Apilar verticalmente */
+        gap: 20px;
+        padding: 15px;
+    }
+
+    .grid-properties {
+        justify-content: center;
+        min-width: auto;
+        width: 100%;
+    }
+
+    .buttons {
+        justify-content: center;
+        min-width: auto;
+        width: 100%;
+    }
+
+    .colors {
+        order: -1;
+        /* 🔥 Mover color picker arriba */
+    }
+
+    header {
+        padding: 0.5rem;
+    }
+
+    .title {
+        font-size: 40px;
+        /* 🔥 Reducir título en móviles */
+    }
+}
+
+@media (max-width: 480px) {
+    .controls {
+        padding: 10px;
+        gap: 15px;
+    }
+
+    .grid-properties {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .buttons {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .title {
+        font-size: 32px;
+    }
+
+    #sketch {
+        width: 95vmin;
+        /* 🔥 Ocupar más espacio en móviles */
+        height: 95vmin;
+    }
+}
+
+@media (max-width: 360px) {
+    .buttons {
+        gap: 5px;
+    }
+
+    button {
+        padding: 8px 10px;
+        min-width: 40px;
+        min-height: 40px;
+    }
+
+    .grid-properties {
+        gap: 8px;
+    }
+}
+
+/* 🔥 MEJORAS PARA INPUTS Y BOTONES */
+input[type="color"] {
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
+        rgba(0, 0, 0, 0.3) 0px 7px 13px -3px,
+        rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+    cursor: pointer;
+}
+
+input[type="range"] {
+    width: 120px;
+}
+
+#eye-dropper {
+    transition: all 0.2s ease;
+}
+
+#eye-dropper.active {
+    cursor: crosshair;
+    box-shadow: 
+        rgba(50, 50, 93, 0.35) 0px 20px 40px -12px inset,
+        rgba(0, 0, 0, 0.4) 0px 12px 24px -12px inset;
+    background: linear-gradient(145deg, #5a6fd8, #4a6ee0);
+    color: white;
+    border: 2px solid #3a5ed0;
+    transform: translateY(2px);
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+
+.eye-dropper-mode #sketch .grid-item {
+    cursor: crosshair;
+}
