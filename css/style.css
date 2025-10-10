@@ -11,6 +11,7 @@
 :root {
     --munsell-red: #F2003C;
     --apricot: #FBCEB1;
+    --color-accent: #f4f4f4;
 }
 
 header,
@@ -35,7 +36,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-image: repeating-radial-gradient(circle at center center, transparent 0px, transparent 2px, rgba(143, 19, 19, 0.03) 2px, rgba(0, 0, 0, 0.03) 3px, transparent 3px, transparent 5px, rgba(0, 0, 0, 0.03) 5px, rgba(0, 0, 0, 0.03) 7px), repeating-radial-gradient(circle at center center, rgb(255, 255, 255) 0px, rgb(255, 255, 255) 9px, rgb(255, 255, 255) 9px, rgb(255, 255, 255) 21px, rgb(255, 255, 255) 21px, rgb(255, 255, 255) 31px, rgb(255, 255, 255) 31px, rgb(255, 255, 255) 40px);
+    background-image: repeating-radial-gradient(circle at center center, transparent 0px, transparent 2px, rgba(0, 0, 0, 0.03) 2px, rgba(0, 0, 0, 0.03) 3px, transparent 3px, transparent 5px, rgba(0, 0, 0, 0.03) 5px, rgba(0, 0, 0, 0.03) 7px), repeating-radial-gradient(circle at center center, rgba(0, 242, 182, 0.07) 0px, rgba(0, 242, 182, 0.07) 9px, rgba(0, 242, 182, 0.07) 9px, rgba(0, 242, 182, 0.07) 21px, rgba(0, 242, 182, 0.07) 21px, rgba(0, 242, 182, 0.07) 31px, rgba(0, 242, 182, 0.07) 31px, rgba(0, 242, 182, 0.07) 40px);
     background-size: 20px 20px;
 }
 
@@ -62,7 +63,6 @@ main {
     display: flex;
     justify-content: center;
     padding: 0;
-
 }
 
 
@@ -78,7 +78,6 @@ main {
     max-width: 600px;
     max-height: 600px;
     align-content: flex-start;
-    /* overflow:hidden; */
 }
 
 .grid-item {
@@ -88,12 +87,10 @@ main {
     flex-shrink: 0;
     flex-grow: 0;
     transition: background-color 0.3s ease;
-
 }
 
 .grid-item-border {
     border: 1px solid #ddd;
-
 }
 
 .controls {
@@ -123,9 +120,10 @@ main {
     align-items: center;
 }
 
-.colors{
+.colors {
     flex-shrink: 0
 }
+
 .colors,
 .special-modes {
     display: flex;
@@ -185,23 +183,33 @@ label {
 
 @media (max-width: 768px) {
     .controls {
+        display: flex;
         flex-direction: column;
         /* 🔥 Apilar verticalmente */
         gap: 20px;
         padding: 15px;
     }
 
+    #grid-size {
+        width: 100px;
+    }
+
+
+
     .grid-properties {
-        justify-content: center;
+        justify-content: space-evenly;
         min-width: auto;
         width: 100%;
     }
 
     .buttons {
+        display: flex;
         justify-content: center;
         min-width: auto;
-        width: 100%;
+
     }
+
+
 
     .colors {
         order: -1;
@@ -221,11 +229,12 @@ label {
 @media (max-width: 480px) {
     .controls {
         padding: 10px;
-        gap: 15px;
+        gap: 10px;
     }
 
     .grid-properties {
-        flex-direction: column;
+        /* flex-direction: column; */
+        justify-content: center;
         gap: 10px;
     }
 
@@ -279,7 +288,7 @@ input[type="range"] {
 
 #eye-dropper.active {
     cursor: crosshair;
-    box-shadow: 
+    box-shadow:
         rgba(50, 50, 93, 0.35) 0px 20px 40px -12px inset,
         rgba(0, 0, 0, 0.4) 0px 12px 24px -12px inset;
     background: linear-gradient(145deg, #5a6fd8, #4a6ee0);
@@ -290,12 +299,73 @@ input[type="range"] {
 }
 
 @keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-    100% { transform: scale(1); }
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+
+    100% {
+        transform: scale(1);
+    }
 }
 
 
 .eye-dropper-mode #sketch .grid-item {
     cursor: crosshair;
+}
+
+.github-link {
+    display: inline-block;
+    transition: all 0.3s ease-out;
+    padding: 8px;
+    border-radius: 50%;
+}
+
+.github-link:hover,
+.github-link:focus {
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: scale(1.1);
+    /* 🔥 Solo escala el contenedor */
+}
+
+.github-link:hover .github-icon,
+.github-link:focus .github-icon {
+    filter: drop-shadow(0 0 0.5em #080808);
+    transform: rotate(360deg) scale(1.2);
+    /* 🔥 Rotación en el icono */
+}
+
+.github-icon {
+    filter: drop-shadow(0.15em 0.15em 0.15em #000);
+    height: 2em;
+    width: 2em;
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    /* 🔥 Transición más suave */
+}
+
+.github-path {
+    fill: var(--color-accent);
+    transition: fill 0.3s ease;
+}
+
+.github-link:hover .github-path {
+    fill: #ffffff;
+    /* 🔥 Cambiar color al hacer hover */
+}
+
+footer {
+    display: flex;
+    justify-content: center; /* Para centrar el contenido */
+    align-items: center;
+    padding: 10px;
+}
+
+footer p {
+    font-family: monospace;
+    margin: 0;
+    font-size: 1.2em;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
