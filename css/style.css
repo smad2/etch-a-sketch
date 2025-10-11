@@ -1,371 +1,365 @@
 * {
-    font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
 *,
 ::after,
 ::before {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 :root {
-    --munsell-red: #F2003C;
-    --apricot: #FBCEB1;
-    --color-accent: #f4f4f4;
+  --munsell-red: #f2003c;
+  --apricot: #fbceb1;
+  --color-accent: #f4f4f4;
 }
 
 header,
 .controls,
 .draw-container {
-    background-color: var(--munsell-red);
-
+  background-color: var(--munsell-red);
 }
 
 .title {
-    margin: 0;
-    font-weight: 800;
-    font-size: 60px;
-    color: var(--apricot);
-    font-family: Pacifico;
+  margin: 0;
+  font-weight: 800;
+  font-size: 60px;
+  color: var(--apricot);
+  font-family: Pacifico;
 }
 
 body {
-    padding: 10px;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-image: repeating-radial-gradient(circle at center center, transparent 0px, transparent 2px, rgba(0, 0, 0, 0.03) 2px, rgba(0, 0, 0, 0.03) 3px, transparent 3px, transparent 5px, rgba(0, 0, 0, 0.03) 5px, rgba(0, 0, 0, 0.03) 7px), repeating-radial-gradient(circle at center center, rgba(0, 242, 182, 0.07) 0px, rgba(0, 242, 182, 0.07) 9px, rgba(0, 242, 182, 0.07) 9px, rgba(0, 242, 182, 0.07) 21px, rgba(0, 242, 182, 0.07) 21px, rgba(0, 242, 182, 0.07) 31px, rgba(0, 242, 182, 0.07) 31px, rgba(0, 242, 182, 0.07) 40px);
-    background-size: 20px 20px;
+  padding: 10px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-image: repeating-radial-gradient(
+      circle at center center,
+      transparent 0px,
+      transparent 2px,
+      rgba(0, 0, 0, 0.03) 2px,
+      rgba(0, 0, 0, 0.03) 3px,
+      transparent 3px,
+      transparent 5px,
+      rgba(0, 0, 0, 0.03) 5px,
+      rgba(0, 0, 0, 0.03) 7px
+    ),
+    repeating-radial-gradient(
+      circle at center center,
+      rgba(0, 242, 182, 0.07) 0px,
+      rgba(0, 242, 182, 0.07) 9px,
+      rgba(0, 242, 182, 0.07) 9px,
+      rgba(0, 242, 182, 0.07) 21px,
+      rgba(0, 242, 182, 0.07) 21px,
+      rgba(0, 242, 182, 0.07) 31px,
+      rgba(0, 242, 182, 0.07) 31px,
+      rgba(0, 242, 182, 0.07) 40px
+    );
+  background-size: 20px 20px;
 }
 
 header {
-    text-align: center;
-    border-radius: 20px 20px 0 0;
-    padding: 0.5rem;
-    color: white;
-    width: 100%;
-    max-width: 800px;
+  text-align: center;
+  border-radius: 20px 20px 0 0;
+  padding: 0.5rem;
+  color: white;
+  width: 100%;
+  max-width: 800px;
 }
 
 main {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 
-    width: 100%;
-    max-width: 800px;
-    max-height: 800px;
-
+  width: 100%;
+  max-width: 800px;
+  max-height: 800px;
 }
 
 .draw-container {
-    display: flex;
-    justify-content: center;
-    padding: 0;
+  display: flex;
+  justify-content: center;
+  padding: 0;
 }
 
-
-
 #sketch {
-    background-color: #fefefe;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-    display: flex;
-    flex-wrap: wrap;
-    box-sizing: border-box;
-    width: 80vmin;
-    height: 80vmin;
-    max-width: 600px;
-    max-height: 600px;
-    align-content: flex-start;
+  background-color: #fefefe;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  display: flex;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+  width: 80vmin;
+  height: 80vmin;
+  max-width: 600px;
+  max-height: 600px;
+  align-content: flex-start;
 }
 
 .grid-item {
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
-    flex-shrink: 0;
-    flex-grow: 0;
-    transition: background-color 0.3s ease;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  flex-shrink: 0;
+  flex-grow: 0;
+  transition: background-color 0.3s ease;
 }
 
 .grid-item-border {
-    border: 1px solid #ddd;
+  border: 1px solid #ddd;
 }
 
 .controls {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
-    padding: 10px;
-    width: 100%;
-    border-radius: 0 0 20px 20px;
-    padding: 20px 100px;
-    flex: wrap;
-
+  padding: 10px;
+  width: 100%;
+  border-radius: 0 0 20px 20px;
+  padding: 20px 100px;
+  flex: wrap;
 }
 
 .grid-properties {
-    display: flex;
-    align-items: start;
-    gap: 5px;
-    flex: 1;
+  display: flex;
+  align-items: start;
+  gap: 5px;
+  flex: 1;
 }
 
 .grid-control,
 .grid-borders {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .colors {
-    flex-shrink: 0
+  flex-shrink: 0;
 }
 
 .colors,
 .special-modes {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
 }
 
 .buttons {
-    display: flex;
-    justify-content: right;
-    align-items: center;
-    gap: 10px;
-    flex: 1;
-
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
 }
 
 button.active {
-    box-shadow:
-        rgba(50, 50, 93, 0.35) 0px 20px 40px -12px inset,
-        rgba(0, 0, 0, 0.4) 0px 12px 24px -12px inset;
-    background: linear-gradient(145deg, #5a6fd8, #4a6ee0);
-    color: white;
-    border: 2px solid #3a5ed0;
-    transform: translateY(2px);
+  box-shadow: rgba(50, 50, 93, 0.35) 0px 20px 40px -12px inset,
+    rgba(0, 0, 0, 0.4) 0px 12px 24px -12px inset;
+  background: linear-gradient(145deg, #5a6fd8, #4a6ee0);
+  color: white;
+  border: 2px solid #3a5ed0;
+  transform: translateY(2px);
 }
 
-
 button {
-    padding: 10px 12px;
-    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
-        rgba(0, 0, 0, 0.3) 0px 7px 13px -3px,
-        rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
-    border: none;
-    border-radius: 8px;
-    background: white;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    min-width: 24px;
-    /* 🔥 Tamaño mínimo táctil */
-    min-height: 24px;
+  padding: 10px 12px;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
+    rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+  border: none;
+  border-radius: 8px;
+  background: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: 24px;
 
+  min-height: 24px;
 }
 
 button:hover:not(.active) {
-    background-color: #f1f3f4;
-    transform: translateY(-1px);
-    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px;
+  background-color: #f1f3f4;
+  transform: translateY(-1px);
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px;
 }
 
 label {
-    font-family: Pacifico;
-    color: var(--apricot);
-    font-weight: 700;
+  font-family: Pacifico;
+  color: var(--apricot);
+  font-weight: 700;
 }
 
-
 @media (max-width: 768px) {
-    .controls {
-        display: flex;
-        flex-direction: column;
-        /* 🔥 Apilar verticalmente */
-        gap: 20px;
-        padding: 15px;
-    }
+  .controls {
+    display: flex;
+    flex-direction: column;
 
-    #grid-size {
-        width: 100px;
-    }
+    gap: 20px;
+    padding: 15px;
+  }
 
+  #grid-size {
+    width: 100px;
+  }
 
+  .grid-properties {
+    justify-content: space-evenly;
+    min-width: auto;
+    width: 100%;
+  }
 
-    .grid-properties {
-        justify-content: space-evenly;
-        min-width: auto;
-        width: 100%;
-    }
+  .buttons {
+    display: flex;
+    justify-content: center;
+    min-width: auto;
+  }
 
-    .buttons {
-        display: flex;
-        justify-content: center;
-        min-width: auto;
+  .colors {
+    order: -1;
+  }
 
-    }
+  header {
+    padding: 0.5rem;
+  }
 
-
-
-    .colors {
-        order: -1;
-        /* 🔥 Mover color picker arriba */
-    }
-
-    header {
-        padding: 0.5rem;
-    }
-
-    .title {
-        font-size: 40px;
-        /* 🔥 Reducir título en móviles */
-    }
+  .title {
+    font-size: 40px;
+  }
 }
 
 @media (max-width: 480px) {
-    .controls {
-        padding: 10px;
-        gap: 10px;
-    }
+  .controls {
+    padding: 10px;
+    gap: 10px;
+  }
 
-    .grid-properties {
-        /* flex-direction: column; */
-        justify-content: center;
-        gap: 10px;
-    }
+  .grid-properties {
+    justify-content: center;
+    gap: 10px;
+  }
 
-    .buttons {
-        flex-wrap: wrap;
-        justify-content: center;
-    }
+  .buttons {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 
-    .title {
-        font-size: 32px;
-    }
+  .title {
+    font-size: 32px;
+  }
 
-    #sketch {
-        width: 95vmin;
-        /* 🔥 Ocupar más espacio en móviles */
-        height: 95vmin;
-    }
+  #sketch {
+    width: 95vmin;
+    height: 95vmin;
+  }
 }
 
 @media (max-width: 360px) {
-    .buttons {
-        gap: 5px;
-    }
+  .buttons {
+    gap: 5px;
+  }
 
-    button {
-        padding: 8px 10px;
-        min-width: 40px;
-        min-height: 40px;
-    }
+  button {
+    padding: 8px 10px;
+    min-width: 40px;
+    min-height: 40px;
+  }
 
-    .grid-properties {
-        gap: 8px;
-    }
+  .grid-properties {
+    gap: 8px;
+  }
 }
 
-/* 🔥 MEJORAS PARA INPUTS Y BOTONES */
 input[type="color"] {
-    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
-        rgba(0, 0, 0, 0.3) 0px 7px 13px -3px,
-        rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
-    cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
+    rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+  cursor: pointer;
 }
 
 input[type="range"] {
-    width: 120px;
+  width: 120px;
 }
 
 #eye-dropper {
-    transition: all 0.2s ease;
+  transition: all 0.2s ease;
 }
 
 #eye-dropper.active {
-    cursor: crosshair;
-    box-shadow:
-        rgba(50, 50, 93, 0.35) 0px 20px 40px -12px inset,
-        rgba(0, 0, 0, 0.4) 0px 12px 24px -12px inset;
-    background: linear-gradient(145deg, #5a6fd8, #4a6ee0);
-    color: white;
-    border: 2px solid #3a5ed0;
-    transform: translateY(2px);
-    animation: pulse 1.5s infinite;
+  cursor: crosshair;
+  box-shadow: rgba(50, 50, 93, 0.35) 0px 20px 40px -12px inset,
+    rgba(0, 0, 0, 0.4) 0px 12px 24px -12px inset;
+  background: linear-gradient(145deg, #5a6fd8, #4a6ee0);
+  color: white;
+  border: 2px solid #3a5ed0;
+  transform: translateY(2px);
+  animation: pulse 1.5s infinite;
 }
 
 @keyframes pulse {
-    0% {
-        transform: scale(1);
-    }
+  0% {
+    transform: scale(1);
+  }
 
-    50% {
-        transform: scale(1.05);
-    }
+  50% {
+    transform: scale(1.05);
+  }
 
-    100% {
-        transform: scale(1);
-    }
+  100% {
+    transform: scale(1);
+  }
 }
 
-
 .eye-dropper-mode #sketch .grid-item {
-    cursor: crosshair;
+  cursor: crosshair;
 }
 
 .github-link {
-    display: inline-block;
-    transition: all 0.3s ease-out;
-    padding: 8px;
-    border-radius: 50%;
+  display: inline-block;
+  transition: all 0.3s ease-out;
+  padding: 8px;
+  border-radius: 50%;
 }
 
 .github-link:hover,
 .github-link:focus {
-    background-color: rgba(255, 255, 255, 0.1);
-    transform: scale(1.1);
-    /* 🔥 Solo escala el contenedor */
+  background-color: rgba(255, 255, 255, 0.1);
+  transform: scale(1.1);
 }
 
 .github-link:hover .github-icon,
 .github-link:focus .github-icon {
-    filter: drop-shadow(0 0 0.5em #080808);
-    transform: rotate(360deg) scale(1.2);
-    /* 🔥 Rotación en el icono */
+  filter: drop-shadow(0 0 0.5em #080808);
+  transform: rotate(360deg) scale(1.2);
 }
 
 .github-icon {
-    filter: drop-shadow(0.15em 0.15em 0.15em #000);
-    height: 2em;
-    width: 2em;
-    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-    /* 🔥 Transición más suave */
+  filter: drop-shadow(0.15em 0.15em 0.15em #000);
+  height: 2em;
+  width: 2em;
+  transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
 .github-path {
-    fill: var(--color-accent);
-    transition: fill 0.3s ease;
+  fill: var(--color-accent);
+  transition: fill 0.3s ease;
 }
 
 .github-link:hover .github-path {
-    fill: #ffffff;
-    /* 🔥 Cambiar color al hacer hover */
+  fill: #ffffff;
 }
 
 footer {
-    display: flex;
-    justify-content: center; /* Para centrar el contenido */
-    align-items: center;
-    padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
 }
 
 footer p {
-    font-family: monospace;
-    margin: 0;
-    font-size: 1.2em;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  font-family: monospace;
+  margin: 0;
+  font-size: 1.2em;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }

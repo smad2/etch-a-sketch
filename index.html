@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,26 +8,22 @@
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="./css/style.css">
-
-    <title>MI Etch a Sketch</title>
+    <title>Etch a Sketch</title>
 </head>
-
 <body>
     <header>
         <h1 class="title">Etch-A-Sketch</h1>
     </header>
-
     <main>
         <div class="draw-container">
             <div id="sketch">
             </div>
         </div>
-
         <div class="controls">
             <div class="grid-properties">
                 <div class="grid-borders">
                     <label for="grid-borders-toggle">Borders</label>
-                    <input type="checkbox" id="grid-borders-toggle" checked />
+                    <input type="checkbox" id="grid-borders-toggle" checked title="Toggle grid borders visibility" />
                 </div>
                 <div class="grid-control">
                     <label for="grid-size">
@@ -36,27 +31,33 @@
                             10x10
                         </span>
                     </label>
-                    <input id="grid-size" type="range" min="10" max="80" value="10" step="2">
+                    <input id="grid-size" type="range" min="10" max="80" value="10" step="2" title="Adjust grid size from 10x10 to 80x80">
                 </div>
-
             </div>
             <div class="colors">
-                <input type="color" id="color-picker" value="#000000"></input>
+                <input type="color" id="color-picker" value="#000000" title="Select drawing color">
             </div>
             <div class="buttons">
                 <div class="special-modes">
-                    <button id="darkening-mode" class="neon-border"><i class="fa-solid fa-moon"></i></button>
-                    <button id="rainbow-mode" class="neon-border"><i class="fa-solid fa-rainbow"></i></button>
+                    <button id="darkening-mode" class="neon-border" title="Darkening Mode - Click cells to progressively darken them">
+                        <i class="fa-solid fa-moon"></i>
+                    </button>
+                    <button id="rainbow-mode" class="neon-border" title="Rainbow Mode - Each stroke gets a random vibrant color">
+                        <i class="fa-solid fa-rainbow"></i>
+                    </button>
                 </div>
-                <button id="eye-dropper"><i class="fa-solid fa-eye-dropper"></i></button>
-                <button id="eraser"><i class="fa-solid fa-eraser"></i></button>
-                <button id="clear"><i class="fa-solid fa-trash"></i></button>
+                <button id="eye-dropper" title="Eye Dropper - Click to activate, then click any cell to pick its color">
+                    <i class="fa-solid fa-eye-dropper"></i>
+                </button>
+                <button id="eraser" title="Eraser - Click and drag to erase drawn areas">
+                    <i class="fa-solid fa-eraser"></i>
+                </button>
+                <button id="clear" title="Clear Canvas - Completely reset the entire drawing">
+                    <i class="fa-solid fa-trash"></i>
+                </button>
             </div>
-
-        </div>
         </div>
     </main>
-
     <footer>
         <p>Made with ❤️ by Salva</p>
         <a class="github-link" title="GitHub Repo for this Project" href="https://github.com/smad2/etch-a-sketch"
@@ -67,8 +68,6 @@
                 </path>
             </svg></a>
     </footer>
-
 </body>
 <script type="module" src="./src/main.js"></script>
-
 </html>
