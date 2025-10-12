@@ -60,22 +60,67 @@ function createGrid(dom, grid) {
     if (!color) color = dom.white;
     if (count === 15) return dom.black;
 
-    let r, g, b;
+    let r, g, b, a;
 
     if (color.charAt(0) === "#") {
       r = parseInt(color.slice(1, 3), 16);
       g = parseInt(color.slice(3, 5), 16);
-      b = parseInt(color.slice(5), 16);
+      b = parseInt(color.slice(5, 7), 16);
     } else if (color.startsWith("rgb(")) {
       const rgb = color.slice(4, -1).replaceAll(" ", "").split(",");
       r = parseInt(rgb[0]);
       g = parseInt(rgb[1]);
       b = parseInt(rgb[2]);
+    } else if (color.startsWith("rgba(")) {
+      const rgba = color.slice(5, -1).replaceAll(" ", "").split(",");
+      r = parseInt(rgba[0]);
+      g = parseInt(rgba[1]);
+      b = parseInt(rgba[2]);
+      a = parseFloat(rgba[3]);
     }
 
-    return `rgb(${Math.floor(r * 0.9)}, ${Math.floor(g * 0.9)}, ${Math.floor(
-      b * 0.9
-    )})`;
+
+    if (color.startsWith("rgba(") && a !== undefined) {
+      return `rgba(${Math.floor(r * 0.9)}, ${Math.floor(g * 0.9)}, ${Math.floor(
+        b * 0.9
+      )}, ${a})`;
+    } else {
+      return `rgb(${Math.floor(r * 0.9)}, ${Math.floor(g * 0.9)}, ${Math.floor(
+        b * 0.9
+      )})`;
+    }
+  };
+
+  const colorToHex = (color) => {
+    if (!color) return "#000000";
+
+    if (color.startsWith("#")) {
+      return color;
+    }
+
+    let r, g, b;
+
+    if (color.startsWith("rgb(")) {
+      const rgb = color.slice(4, -1).replaceAll(" ", "").split(",");
+      r = parseInt(rgb[0]);
+      g = parseInt(rgb[1]);
+      b = parseInt(rgb[2]);
+    } else if (color.startsWith("rgba(")) {
+      const rgba = color.slice(5, -1).replaceAll(" ", "").split(",");
+      r = parseInt(rgba[0]);
+      g = parseInt(rgba[1]);
+      b = parseInt(rgba[2]);
+    }
+
+    return (
+      "#" +
+      [r, g, b]
+        .map((x) => {
+          const hex = x.toString(16);
+          return hex.length === 1 ? "0" + hex : hex;
+        })
+        .join("")
+    );
   };
 
   const changeColor = (e) => {
@@ -90,15 +135,14 @@ function createGrid(dom, grid) {
       if (count < 15) {
         count++;
         e.target.dataset.interactionCount = count;
-        e.target.style.backgroundColor = darkenColour(
-          e.target.style.backgroundColor,
-          count
+        e.target.style.backgroundColor = colorToHex(
+          darkenColour(e.target.style.backgroundColor, count)
         );
       }
       return;
     }
 
-    e.target.style.backgroundColor = dom.colorPicker.value;
+    e.target.style.backgroundColor = colorToHex(dom.colorPicker.value);
   };
 
   function addMultiEvent(element, events, handler) {
@@ -127,7 +171,11 @@ function createGrid(dom, grid) {
       e.preventDefault();
 
       if (dom.eyeDropperOn) {
-        dom.colorPicker.value = e.target.style.backgroundColor || dom.white;
+        if (e.target.style.backgroundColor) {
+          dom.colorPicker.value = colorToHex(e.target.style.backgroundColor);
+        } else {
+          dom.colorPicker.value = dom.white;
+        }
         dom.toggleEyeDropper();
         return;
       }
@@ -157,7 +205,11 @@ function createGrid(dom, grid) {
   dom.sketch.addEventListener("click", (e) => {
     if (e.target.classList.contains("grid-item")) {
       if (dom.eyeDropperOn) {
-        dom.colorPicker.value = e.target.style.backgroundColor || dom.white;
+        if (e.target.style.backgroundColor) {
+          dom.colorPicker.value = colorToHex(e.target.style.backgroundColor);
+        } else {
+          dom.colorPicker.value = dom.white;
+        }
         dom.toggleEyeDropper();
         return;
       }
